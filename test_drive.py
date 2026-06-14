@@ -82,12 +82,14 @@ for carpeta in carpetas:
 # -----------------------------
 # 4. PRUEBA FINAL
 # -----------------------------
-for letra in sorted(por_letra.keys()):
-
-    print(f"\n{letra} ({len(por_letra[letra])})")
-
-    for item in por_letra[letra]:
-        print("   ", item["nombre"])
+#for letra in sorted(por_letra.keys()):
+#
+#    print(f"\n{letra} ({len(por_letra[letra])})")
+#
+#    for item in por_letra[letra]:
+#        print("   ", item["nombre"])
+total = sum(len(lista) for lista in por_letra.values())
+print(f"Archivos encontrados: {total}")
 
 # Crear el archivo biblioteca.json
 

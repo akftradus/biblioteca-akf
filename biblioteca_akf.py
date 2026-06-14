@@ -31,7 +31,7 @@ for letra, lista_archivos in datos.items():
             "fecha": fecha_dt.strftime("%d/%m/%Y"),
             "letra": letra,
 #            "ruta": f"https://drive.google.com/file/d/{item['id']}/view"
-            "ruta" = f"https://drive.google.com/uc?export=download&id={item['id']}"
+            "ruta": f"https://drive.google.com/uc?export=download&id={item['id']}"
         })
 
 archivos_ordenados = sorted(
