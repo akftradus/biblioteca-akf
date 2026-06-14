@@ -1,0 +1,28 @@
+
+
+FASE 1
+
+Biblioteca AKF (carpeta)
+Direccion:    https://drive.google.com/drive/folders/1Rw_J6y1Bmavo5QeYqlyswG74DLuMkwo_
+ID:   1Rw_J6y1Bmavo5QeYqlyswG74DLuMkwo_
+
+---------------------------------
+
+FASE 2
+
+Acceso publico a Biblioteca AKF verificado
+
+---------------------------------
+
+FASE 3
+
+Necesidad de prueba
+    Carpeta letra A
+	    Direccion:   https://drive.google.com/drive/folders/1GMI6NFGJn0YdwMrqqhZFMkGZ2pk6mOny
+		ID:   1GMI6NFGJn0YdwMrqqhZFMkGZ2pk6mOny
+		
+	Acceso publico verificado
+	Herencia de permisos correcta.
+	
+---------------------------------
+
