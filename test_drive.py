@@ -40,6 +40,15 @@ carpetas = [
 # 2. ESTRUCTURA FINAL
 # -----------------------------
 por_letra = {}
+# --------------------
+
+EXTENSIONES_VALIDAS = {
+    ".7z",
+    ".zip",
+    ".rar"
+}
+
+archivos_vistos = set()
 
 # -----------------------------
 # 3. RECORRER CARPETAS
@@ -53,6 +62,7 @@ for carpeta in carpetas:
 
     files = service.files().list(
         q=query,
+#        fields="files(id, name, mimeType, appProperties)"
         fields="files(id, name, mimeType, modifiedTime)"
     ).execute().get("files", [])
 
@@ -66,10 +76,36 @@ for carpeta in carpetas:
         nombre = f["name"]
         file_id = f["id"]
         
+        if nombre in archivos_vistos:
+        
+            print()
+            print("----------------------------------------")
+            print("AVISO DUPLICADO")
+            print()
+            print(nombre)
+            print(f"Carpeta: {carpeta_nombre}")
+            print("----------------------------------------")
+        
+        else:
+            archivos_vistos.add(nombre)
+        
         fecha_mod = f["modifiedTime"]
 
         # extensión (si existe)
         _, ext = os.path.splitext(nombre)
+        
+        ext = ext.lower()
+        
+        if ext not in EXTENSIONES_VALIDAS:
+        
+            print()
+            print("----------------------------------------")
+            print("AVISO EXTENSIÓN NO PERMITIDA")
+            print()
+            print(nombre)
+            print(f"Extensión: {ext}")
+            print(f"Carpeta: {carpeta_nombre}")
+            print("----------------------------------------")
 
         lista_archivos.append({
             "nombre": nombre,
@@ -89,6 +125,7 @@ for carpeta in carpetas:
 #    for item in por_letra[letra]:
 #        print("   ", item["nombre"])
 total = sum(len(lista) for lista in por_letra.values())
+print(f"Carpetas procesadas: {len(por_letra)}")
 print(f"Archivos encontrados: {total}")
 
 # Crear el archivo biblioteca.json

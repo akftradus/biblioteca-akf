@@ -4,6 +4,8 @@ from collections import defaultdict
 import json
 import string
 
+GENERADO_EN = datetime.now()
+
 base = Path(".")  # Esto es temporal
 
 # --------------------------------------------------
@@ -30,7 +32,6 @@ for letra, lista_archivos in datos.items():
             "fecha_dt": fecha_dt,
             "fecha": fecha_dt.strftime("%d/%m/%Y"),
             "letra": letra,
-#            "ruta": f"https://drive.google.com/file/d/{item['id']}/view"
             "ruta": f"https://drive.google.com/uc?export=download&id={item['id']}"
         })
 
@@ -53,9 +54,7 @@ for a in archivos:
 
 def header():
 
-    ultima_fecha = "-"
-    if archivos_ordenados:
-        ultima_fecha = archivos_ordenados[0]["fecha"]
+    ultima_fecha = GENERADO_EN.strftime("%d/%m/%Y %H:%M:%S")
 
     return f"""
 <!DOCTYPE html>
@@ -429,7 +428,9 @@ function mostrarLetra(letra) {
             }
         });
 
-    const items = biblioteca.filter(item => item.letra === letra);
+    const items = biblioteca
+        .filter(item => item.letra === letra)
+        .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }));
 
     contenedor.innerHTML = "";
 
