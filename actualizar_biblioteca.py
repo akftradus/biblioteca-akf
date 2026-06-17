@@ -3,13 +3,24 @@ import sys
 from datetime import datetime
 import time
 
+# =========================
+# COLORES
+# =========================
+BOLD = '\033[1m'
+GREEN = '\033[32m'
+YELLOW = '\033[33m'
+LIGHTBLUE = '\033[38;5;39m'
+LIGHTORANGE = '\033[38;5;215m'
+PINK = '\033[38;5;213m'
+RESET = '\033[0m'
+
 print("Actualizando biblioteca.json...")
 resultado = subprocess.run(
     [sys.executable, "test_drive.py"]
 )
 
 if resultado.returncode != 0:
-    print("ERROR al generar biblioteca.json")
+    print(f"    {YELLOW}ERROR al generar biblioteca.json{RESET}")
     sys.exit(1)
 
 print("Generando index.html...")
@@ -18,7 +29,7 @@ resultado = subprocess.run(
 )
 
 if resultado.returncode != 0:
-    print("ERROR al generar index.html")
+    print(f"    {YELLOW}ERROR al generar index.html{RESET}")
     sys.exit(1)
 
 print("Publicando en GitHub...")
@@ -56,11 +67,13 @@ push = subprocess.run(["git", "push"])
 if push.returncode == 0:
     print("Cambios publicados en GitHub.")
 else:
-    print("ERROR al publicar en GitHub.")
+    print(f"    {YELLOW} al publicar en GitHub.{RESET}")
     sys.exit(1)
 
 print()
 print("===================================")
 print("Biblioteca actualizada correctamente")
 print("===================================")
-time.sleep(1)
+print()
+print(f"      {GREEN}Proceso completado correctamente.{RESET}")
+time.sleep(2)
