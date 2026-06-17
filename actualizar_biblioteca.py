@@ -1,6 +1,7 @@
 import subprocess
 import sys
 from datetime import datetime
+import time
 
 print("Actualizando biblioteca.json...")
 resultado = subprocess.run(
@@ -62,4 +63,4 @@ print()
 print("===================================")
 print("Biblioteca actualizada correctamente")
 print("===================================")
-input()
+time.sleep(1)
