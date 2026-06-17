@@ -1,3 +1,6 @@
 biblioteca-akf-b75b8dd4cc20.json
 oauth_client.json
 token.pickle
+*.pickle
+*.json
+.env
