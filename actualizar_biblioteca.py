@@ -23,23 +23,40 @@ if resultado.returncode != 0:
 print("Publicando en GitHub...")
 
 # git add .
-subprocess.run(["git", "add", "."])
+status = subprocess.run(
+    ["git", "status", "--porcelain"],
+    capture_output=True,
+    text=True
+)
+
+if not status.stdout.strip():
+    print("No hay cambios para publicar.")
+    sys.exit(0)
 
 # mensaje con fecha y hora
 fecha = datetime.now().strftime("%Y-%m-%d %H:%M")
 mensaje = f"Actualización automática {fecha}"
 
 # git commit
-resultado = subprocess.run(
-    ["git", "commit", "-m", mensaje]
-)
+# Añadir SOLO cambios reales (no todo)
+subprocess.run(["git", "add", "-u"])
 
-# Si no hay cambios, Git devuelve error, pero no queremos detenernos
-if resultado.returncode == 0:
-    subprocess.run(["git", "push"])
+fecha = datetime.now().strftime("%Y-%m-%d %H:%M")
+mensaje = f"Actualización automática {fecha}"
+
+commit = subprocess.run(["git", "commit", "-m", mensaje])
+
+if commit.returncode != 0:
+    print("No hay cambios para commitear.")
+    sys.exit(0)
+
+push = subprocess.run(["git", "push"])
+
+if push.returncode == 0:
     print("Cambios publicados en GitHub.")
 else:
-    print("No hay cambios para publicar.")
+    print("ERROR al publicar en GitHub.")
+    sys.exit(1)
 
 print()
 print("===================================")

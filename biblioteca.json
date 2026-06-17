@@ -1027,6 +1027,11 @@
     ],
     "0-99": [
         {
+            "nombre": "30Days-0.6a-pc (ES-AKF-4).7z",
+            "id": "17DRFb4W-FJBwlSQHRGPlSLaW0vVJocyC",
+            "fecha_mod": "2026-06-17T17:14:13.000Z"
+        },
+        {
             "nombre": "16_Years_Later_Ep.16-pc (ES-AKF-4o).7z",
             "id": "1kkHB4tNMxIUB9wwrZHez9WwiDg_ruxCE",
             "fecha_mod": "2026-05-10T19:18:03.000Z"
@@ -8118,6 +8123,11 @@
     ],
     "A": [
         {
+            "nombre": "Altered_Destiny-0.16.1b-pc (ES-AKF-Fast).7z",
+            "id": "136hn53QJH7DQzQFvHCrHnLe7eyWHaSoj",
+            "fecha_mod": "2026-06-17T14:53:18.000Z"
+        },
+        {
             "nombre": "Artemis-0.7-pc [+Mod] (ES-AKF-4) Part_2.7z",
             "id": "1HRfIrOF85_EmjzPCoGvxESZL6MJ6Nn22",
             "fecha_mod": "2026-06-07T16:14:42.000Z"
@@ -8611,11 +8621,6 @@
             "nombre": "AnnaExcitingAffection_CH2_v0.98 (ES-AKF).7z",
             "id": "11qs2jaZquqyBZXfaduEvyjdj94YyqN-m",
             "fecha_mod": "2023-05-25T21:59:06.000Z"
-        },
-        {
-            "nombre": "Amnesia-_0.93a reparado (ES-AKF).7z",
-            "id": "1hJg5bGd3XS74YiUknEjYZEJIa3xNtu2m",
-            "fecha_mod": "2023-05-14T00:46:29.000Z"
         }
     ]
 }
