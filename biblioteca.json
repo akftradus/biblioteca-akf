@@ -8138,6 +8138,11 @@
     ],
     "A": [
         {
+            "nombre": "Amnesia-0.109-pc (ES-AKF-4).7z",
+            "id": "1ACzYFThstuQQWk5DyeqHgfgGN2i9fqof",
+            "fecha_mod": "2026-06-25T10:05:53.000Z"
+        },
+        {
             "nombre": "Altered_Destiny-0.16.1b-pc (ES-AKF-Fast).7z",
             "id": "136hn53QJH7DQzQFvHCrHnLe7eyWHaSoj",
             "fecha_mod": "2026-06-17T14:53:18.000Z"
@@ -8631,11 +8636,6 @@
             "nombre": "AwayFromHome-Episode[1-19]-pc (ES-AKF).7z",
             "id": "1Oe7Ot3S00JQH_zOohPlE0O6JSURxo6n3",
             "fecha_mod": "2023-05-27T21:39:28.000Z"
-        },
-        {
-            "nombre": "AnnaExcitingAffection_CH2_v0.98 (ES-AKF).7z",
-            "id": "11qs2jaZquqyBZXfaduEvyjdj94YyqN-m",
-            "fecha_mod": "2023-05-25T21:59:06.000Z"
         }
     ]
 }
