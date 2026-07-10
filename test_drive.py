@@ -22,14 +22,40 @@ credentials = service_account.Credentials.from_service_account_file(
 service = build("drive", "v3", credentials=credentials)
 
 # -----------------------------
+# FUNCIÓN PARA LEER TODAS LAS PÁGINAS
+# -----------------------------
+def obtener_todos_los_archivos(query, fields):
+
+    resultados = []
+    page_token = None
+
+    while True:
+
+        respuesta = service.files().list(
+            q=query,
+            fields=f"nextPageToken, files({fields})",
+            pageToken=page_token
+        ).execute()
+
+        resultados.extend(respuesta.get("files", []))
+
+        page_token = respuesta.get("nextPageToken")
+
+        if page_token is None:
+            break
+
+    return resultados
+
+
+# -----------------------------
 # 1. LEER CARPETAS PRINCIPALES
 # -----------------------------
 query_root = f"'{ROOT_FOLDER_ID}' in parents and trashed = false"
 
-root_items = service.files().list(
-    q=query_root,
-    fields="files(id, name, mimeType)"
-).execute().get("files", [])
+root_items = obtener_todos_los_archivos(
+    query_root,
+    "id, name, mimeType"
+)
 
 carpetas = [
     c for c in root_items
@@ -40,7 +66,6 @@ carpetas = [
 # 2. ESTRUCTURA FINAL
 # -----------------------------
 por_letra = {}
-# --------------------
 
 EXTENSIONES_VALIDAS = {
     ".7z",
@@ -60,11 +85,10 @@ for carpeta in carpetas:
 
     query = f"'{carpeta_id}' in parents and trashed = false"
 
-    files = service.files().list(
-        q=query,
-#        fields="files(id, name, mimeType, appProperties)"
-        fields="files(id, name, mimeType, modifiedTime)"
-    ).execute().get("files", [])
+    files = obtener_todos_los_archivos(
+        query,
+        "id, name, mimeType, modifiedTime"
+    )
 
     lista_archivos = []
 
@@ -75,9 +99,9 @@ for carpeta in carpetas:
 
         nombre = f["name"]
         file_id = f["id"]
-        
+
         if nombre in archivos_vistos:
-        
+
             print()
             print("----------------------------------------")
             print("AVISO DUPLICADO")
@@ -85,19 +109,17 @@ for carpeta in carpetas:
             print(nombre)
             print(f"Carpeta: {carpeta_nombre}")
             print("----------------------------------------")
-        
+
         else:
             archivos_vistos.add(nombre)
-        
+
         fecha_mod = f["modifiedTime"]
 
-        # extensión (si existe)
         _, ext = os.path.splitext(nombre)
-        
         ext = ext.lower()
-        
+
         if ext not in EXTENSIONES_VALIDAS:
-        
+
             print()
             print("----------------------------------------")
             print("AVISO EXTENSIÓN NO PERMITIDA")
@@ -113,22 +135,32 @@ for carpeta in carpetas:
             "fecha_mod": fecha_mod
         })
 
+    # Orden alfabético dentro de cada carpeta (opcional pero recomendable)
+    lista_archivos.sort(key=lambda x: x["nombre"].lower())
+
     por_letra[carpeta_nombre] = lista_archivos
 
 # -----------------------------
-# 4. PRUEBA FINAL
+# 4. RESUMEN
 # -----------------------------
-#for letra in sorted(por_letra.keys()):
-#
-#    print(f"\n{letra} ({len(por_letra[letra])})")
-#
-#    for item in por_letra[letra]:
-#        print("   ", item["nombre"])
 total = sum(len(lista) for lista in por_letra.values())
-print(f"Carpetas procesadas: {len(por_letra)}")
+
+print()
+print("========================================")
+print(f"Carpetas procesadas : {len(por_letra)}")
 print(f"Archivos encontrados: {total}")
+print("========================================")
+print()
 
-# Crear el archivo biblioteca.json
-
+# -----------------------------
+# 5. GUARDAR JSON
+# -----------------------------
 with open("biblioteca.json", "w", encoding="utf-8") as f:
-    json.dump(por_letra, f, ensure_ascii=False, indent=4)
+    json.dump(
+        por_letra,
+        f,
+        ensure_ascii=False,
+        indent=4
+    )
+
+print("biblioteca.json generado correctamente.")
