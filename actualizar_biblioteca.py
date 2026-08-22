@@ -72,8 +72,8 @@ else:
 
 print()
 print(f"      {GREEN}==================================={RESET}")
-print("      Biblioteca actualizada correctamente")
+print("        Biblioteca actualizada correctamente")
 print(f"      {GREEN}==================================={RESET}")
 print()
 print(f"      {GREEN}Proceso completado correctamente.{RESET}")
-time.sleep(2)
+time.sleep(3)
