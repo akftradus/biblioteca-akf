@@ -65,15 +65,15 @@ if commit.returncode != 0:
 push = subprocess.run(["git", "push"])
 
 if push.returncode == 0:
-    print("Cambios publicados en GitHub.")
+    print(f"    {GREEN}Cambios publicados en GitHub.{RESET}")
 else:
     print(f"    {YELLOW} al publicar en GitHub.{RESET}")
     sys.exit(1)
 
 print()
-print("===================================")
-print("Biblioteca actualizada correctamente")
-print("===================================")
+print(f"      {GREEN}==================================={RESET}")
+print("      Biblioteca actualizada correctamente")
+print(f"      {GREEN}==================================={RESET}")
 print()
 print(f"      {GREEN}Proceso completado correctamente.{RESET}")
 time.sleep(2)
