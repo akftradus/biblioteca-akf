@@ -33,7 +33,6 @@ if resultado.returncode != 0:
     sys.exit(1)
 
 print("Publicando en GitHub...")
-print("***** ESTOY EJECUTANDO ESTE SCRIPT *****")
 
 # git add .
 status = subprocess.run(
@@ -57,16 +56,11 @@ subprocess.run(["git", "add", "-u"])
 fecha = datetime.now().strftime("%Y-%m-%d %H:%M")
 mensaje = f"Actualización automática {fecha}"
 
-print("***** ANTES DEL COMMIT *****")
 commit = subprocess.run(["git", "commit", "-m", mensaje])
-print("***** DESPUÉS DEL COMMIT *****")
 
 if commit.returncode != 0:
     print("No hay cambios para commitear.")
     sys.exit(0)
-
-print("Git que encuentra Python:")
-subprocess.run(["git", "--version"])
 
 push = subprocess.run(["git", "push"])
 
