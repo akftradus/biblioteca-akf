@@ -63,8 +63,8 @@ if commit.returncode != 0:
     print("No hay cambios para commitear.")
     sys.exit(0)
 
-print("Git utilizado por Python:")
-subprocess.run(["where", "git"])
+print("Git que encuentra Python:")
+subprocess.run(["git", "--version"])
 
 push = subprocess.run(["git", "push"])
 
