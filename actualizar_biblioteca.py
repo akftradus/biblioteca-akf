@@ -33,6 +33,7 @@ if resultado.returncode != 0:
     sys.exit(1)
 
 print("Publicando en GitHub...")
+print("***** ESTOY EJECUTANDO ESTE SCRIPT *****")
 
 # git add .
 status = subprocess.run(
