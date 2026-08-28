@@ -57,7 +57,9 @@ subprocess.run(["git", "add", "-u"])
 fecha = datetime.now().strftime("%Y-%m-%d %H:%M")
 mensaje = f"Actualización automática {fecha}"
 
+print("***** ANTES DEL COMMIT *****")
 commit = subprocess.run(["git", "commit", "-m", mensaje])
+print("***** DESPUÉS DEL COMMIT *****")
 
 if commit.returncode != 0:
     print("No hay cambios para commitear.")
