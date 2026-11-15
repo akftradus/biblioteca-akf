@@ -5,6 +5,22 @@ from datetime import datetime
 import time
 
 # =========================
+# HABILITAR COLORES ANSI
+# =========================
+if sys.platform == "win32":
+    import ctypes
+
+    kernel32 = ctypes.windll.kernel32
+    handle = kernel32.GetStdHandle(-11)
+    modo = ctypes.c_ulong()
+
+    if kernel32.GetConsoleMode(handle, ctypes.byref(modo)):
+        kernel32.SetConsoleMode(
+            handle,
+            modo.value | 0x0004
+        )
+
+# =========================
 # COLORES
 # =========================
 BOLD = '\033[1m'
